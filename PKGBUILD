@@ -14,7 +14,7 @@
 
 _pkgname=mpd
 pkgname=${_pkgname}-git
-pkgver=0.22.1.r67.gad585e179
+pkgver=0.22.3.r168.g0a81e462d
 pkgrel=1
 pkgdesc='Flexible, powerful, server-side application for playing music (from git)'
 url='https://www.musicpd.org/'
@@ -61,7 +61,6 @@ prepare() {
 build() {
   cd "${_pkgname}"
 
-  # NOTE: sndio conflicts with alsa
   # TODO: package adplug
   # TODO: package shine
   meson --prefix /usr \
@@ -74,7 +73,6 @@ build() {
         -D b_pie=true \
         -D documentation=enabled \
         -D adplug=disabled \
-        -D sndio=disabled \
         -D shine=disabled \
         -D tremor=disabled \
         build
