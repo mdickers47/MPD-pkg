@@ -32,7 +32,7 @@ makedepends=('alsa-lib' 'audiofile' 'avahi' 'boost' 'curl' 'dbus' 'faad2'
 provides=('mpd')
 conflicts=('mpd')
 backup=("etc/${_pkgname}.conf")
-source=("${_pkgname}::git+https://github.com/MusicPlayerDaemon/MPD"
+source=("${_pkgname}::git+https://github.com/mdickers47/MPD"
         "${_pkgname}.conf"
         "${_pkgname}.sysusers"
         "${_pkgname}.tmpfiles")
