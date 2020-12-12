@@ -22,12 +22,12 @@ license=('GPL2')
 arch=('x86_64')
 depends=('bzip2' 'chromaprint' 'expat' 'gcc-libs' 'glibc' 'lame' 'libcdio'
          'libcdio-paranoia' 'libgcrypt' 'libgme' 'libmad' 'libmms' 'libmodplug'
-         'libmpcdec' 'libnfs' 'libshout' 'libsidplayfp' 'libsoxr' 'openal' 'opus'
-         'smbclient' 'sqlite' 'wavpack' 'wildmidi' 'yajl' 'zlib' 'zziplib')
-makedepends=('alsa-lib' 'audiofile' 'avahi' 'boost' 'curl' 'dbus' 'faad2'
-             'ffmpeg' 'flac' 'fluidsynth' 'git' 'icu' 'jack' 'libao' 'libid3tag' 'libmikmod'
-             'libmpdclient' 'libogg' 'libpulse' 'libsamplerate' 'libsndfile' 'libupnp'
-             'liburing' 'libvorbis' 'meson' 'mpg123' 'python-sphinx' 'systemd-libs'
+         'libmpcdec' 'libnfs' 'libshout' 'libsoxr' 'liburing' 'openal' 'opus'
+         'sqlite' 'wavpack' 'yajl' 'zlib' 'zziplib')
+makedepends=('alsa-lib' 'audiofile' 'boost' 'curl' 'dbus' 'faad2'
+             'ffmpeg' 'flac' 'fluidsynth' 'git' 'icu' 'libao' 'libid3tag' 'libmikmod'
+             'libmpdclient' 'libogg' 'libsamplerate' 'libsndfile'
+             'libvorbis' 'meson' 'mpg123' 'python-sphinx' 'systemd-libs'
              'twolame')
 provides=('mpd')
 conflicts=('mpd')
@@ -73,8 +73,17 @@ build() {
         -D b_pie=true \
         -D documentation=enabled \
         -D adplug=disabled \
+        -D jack=disabled \
+        -D pulse=disabled \
+        -D qobuz=disabled \
         -D shine=disabled \
+        -D sidplay=disabled \
+        -D smbclient=disabled \
+        -D tidal=disabled \
         -D tremor=disabled \
+        -D upnp=disabled \
+        -D wildmidi=disabled \
+        -D zeroconf=disabled \
         build
   ninja -C build
 }
@@ -87,10 +96,10 @@ check() {
 
 package() {
   depends+=('libFLAC.so' 'libao.so' 'libasound.so' 'libaudiofile.so'
-            'libavahi-client.so' 'libavahi-common.so' 'libavcodec.so' 'libavformat.so'
+            'libavcodec.so' 'libavformat.so'
             'libavutil.so' 'libcurl.so' 'libdbus-1.so' 'libfaad.so' 'libfluidsynth.so'
-            'libicui18n.so' 'libicuuc.so' 'libid3tag.so' 'libjack.so' 'libmikmod.so'
-            'libmpdclient.so' 'libmpg123.so' 'libogg.so' 'libpulse.so' 'libsamplerate.so'
+            'libicui18n.so' 'libicuuc.so' 'libid3tag.so' 'libmikmod.so'
+            'libmpdclient.so' 'libmpg123.so' 'libogg.so' 'libsamplerate.so'
             'libsndfile.so' 'libsystemd.so' 'libtwolame.so' 'libvorbis.so'
             'libvorbisenc.so')
 
